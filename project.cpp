@@ -6,33 +6,29 @@ using namespace std;
 
 int main()
 {
-    const int MAX = 100;
-    int Largest;
-    int tempLarge;
-    int temp;
-    Largest = 0;
-    int array[MAX];
-    int sizeOfArray = 0;
-    cout << "Enter up to " << MAX << " positive integers." << endl;
-    cout << "Enter 0 when you want to stop inputting values." << endl;
-    for (int i = 0 ; i < MAX ; i++)
+    const int MAX = 100; //Number to be used in loops to limit max user input and set the array size
+    int Largest; //variable to store the largest number
+    int tempLarge; //temporary variable used to store largest number
+    int temp; //variable used to store data temporarily
+    Largest = 0; //sets the initial value of largest
+    int array[MAX]; //variable declaration for array to store user inputs
+    int sizeOfArray = 0; // variable that will save the size of the array as the user adds to it
+    for (int i = 0 ; i < MAX ; i++) // loop that allows user to input up to 100 integers
     {
-        cout << "Enter a number" << endl;
         cin >> array[i];
-        if (array[i] == 0)
+        if (array[i] == 0) //checks if the user entered 0 (Exits the loop)
         {
             i = MAX;
         }
-        else if (array[i] < 0)
+        else if (array[i] < 0) // checks if the user entered a negative number (Not accepted by program)
         {
-            cout << "Negative numbers are not accepted, try again." << endl;
-            i--;
+            i--; //reverts loop by one and allows user to re-enter a value
         }
-        else
+        else //if it isnt 0 or negative this executes
         {
-            sizeOfArray++;
+            sizeOfArray++; //the variable that stores size of array is incremented by 1
             temp = array[i];
-            if (Largest < temp)
+            if (Largest < temp)// checks if there is a new largest value and then sets it as the "Largest" variable if it is
             {
                 tempLarge = temp;
                 Largest = tempLarge;
@@ -44,14 +40,14 @@ int main()
     
     int row;
     int col;
-    col = sizeOfArray;
-    row = Largest;
+    col = sizeOfArray; //variables used to set the 
+    row = Largest;     //size of the vector of vector of characters
     if (row > 0 && col > 0)
     {
 
-        vector<vector<char> >stars(row, vector<char>(col));
+        vector<vector<char> >stars(row, vector<char>(col)); // vector of vector of characters used to store stars
         int i;
-        for (int r = 0; r < Largest; r++)
+        for (int r = 0; r < Largest; r++) //this set of loops adds spaces to every cell of the vector of vector of characters
         {
             for (int c = 0; c < sizeOfArray; c++)
             {
@@ -59,19 +55,15 @@ int main()
             }
         }
         
-        for (int c = 0; c < sizeOfArray; c++)
+        for (int c = 0; c < sizeOfArray; c++) // adds stars starting from the bottom left and going to top right
         {
             for (int r = Largest; r > Largest-array[c]; r--)
             {
-                cout << r << ", " << c << ", " <<array[c] << endl;
-                
                 stars[r-1][c] = '*';
             }
         }
-            
-        cout << sizeOfArray << endl;
-        cout << Largest << endl;
-        for (int r = 0; r < Largest; r++)
+        
+        for (int r = 0; r < Largest; r++) //outputs the stars for the user to see
         {
             for(int c = 0; c < sizeOfArray ;c++)
             {
